@@ -29,7 +29,7 @@ export default function Modal({ title, onClose, children }: ModalProps) {
       <div
         style={{
           width: '100%',
-          backgroundColor: '#1a1a1a',
+          backgroundColor: '#ffffff',
           borderRadius: '20px 20px 0 0',
           padding: '24px 20px calc(24px + env(safe-area-inset-bottom))',
           maxHeight: '90dvh',
@@ -38,7 +38,7 @@ export default function Modal({ title, onClose, children }: ModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-          <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: '#f5f5f5' }}>{title}</h2>
+          <h2 style={{ margin: 0, fontSize: '18px', fontWeight: 600, color: '#111827' }}>{title}</h2>
           <button
             onClick={onClose}
             style={{

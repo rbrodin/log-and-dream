@@ -2,15 +2,22 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSeasons } from '../hooks/useSeasons'
 import { useWeekLogs } from '../hooks/useWeekLogs'
+import { useDayLogs } from '../hooks/useDayLogs'
 import ActiveSeasonBanner from '../components/home/ActiveSeasonBanner'
 import WeekTile from '../components/shared/WeekTile'
 import LogWeekForm from '../components/forms/LogWeekForm'
+import LogDayForm from '../components/forms/LogDayForm'
 
 export default function HomePage() {
   const navigate = useNavigate()
   const { activeSeason } = useSeasons()
   const { weekLogs, createWeekLog } = useWeekLogs(activeSeason?.id ?? null)
+  const { createDayLog } = useDayLogs()
   const [showLogWeek, setShowLogWeek] = useState(false)
+  const [showLogDay, setShowLogDay] = useState(false)
+
+  // Use most recent week log id for day logging, or null if none
+  const latestWeekLogId = weekLogs[0]?.id ?? null
 
   const recentWeeks = weekLogs.slice(0, 5)
 
@@ -40,14 +47,14 @@ export default function HomePage() {
         </button>
 
         <button
-          onClick={() => {/* day logging — coming soon */}}
+          onClick={() => activeSeason ? setShowLogDay(true) : navigate('/seasons')}
           style={{
             flex: 1,
             padding: '16px 12px',
-            backgroundColor: '#1a1a1a',
-            border: '1px solid #252525',
+            backgroundColor: '#f3f4f6',
+            border: '1px solid #e5e7eb',
             borderRadius: '14px',
-            color: '#f5f5f5',
+            color: '#111827',
             cursor: 'pointer',
             textAlign: 'left',
           }}
@@ -87,9 +94,9 @@ export default function HomePage() {
               width: '100%',
               padding: '12px',
               backgroundColor: 'transparent',
-              border: '1px solid #252525',
+              border: '1px solid #e5e7eb',
               borderRadius: '12px',
-              color: '#9ca3af',
+              color: '#6b7280',
               fontSize: '14px',
               cursor: 'pointer',
               marginTop: '4px',
@@ -107,6 +114,14 @@ export default function HomePage() {
           nextWeekNumber={weekLogs.length + 1}
           onClose={() => setShowLogWeek(false)}
           onCreate={createWeekLog}
+        />
+      )}
+
+      {showLogDay && activeSeason && (
+        <LogDayForm
+          weekLogId={latestWeekLogId ?? 'standalone'}
+          onClose={() => setShowLogDay(false)}
+          onCreate={createDayLog}
         />
       )}
     </div>

@@ -7,7 +7,7 @@ import SettingsPage from './pages/SettingsPage'
 
 export default function App() {
   return (
-    <div style={{ minHeight: '100dvh', backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
+    <div style={{ minHeight: '100dvh', backgroundColor: '#ffffff', color: '#111827' }}>
       <main style={{ paddingBottom: '72px' }}>
         <Routes>
           <Route path="/" element={<HomePage />} />

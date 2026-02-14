@@ -1,22 +1,18 @@
 import { useState } from 'react'
 import Modal from '../shared/Modal'
-import { getCurrentWeekBounds, getVibeColor } from '../../lib/utils'
-import type { WeekLog } from '../../types'
+import { getVibeColor, toISODate } from '../../lib/utils'
+import type { DayLog } from '../../types'
 
 const EMOJI_OPTIONS = ['😊','🔥','💪','🌊','✨','😴','🤔','😤','🙏','🎯','🌱','☀️','🌧️','⚡','🎉','🧠','❤️','😔','🚀','🌙']
 
-interface LogWeekFormProps {
-  seasonId: string
-  seasonNumber: number
-  nextWeekNumber: number
+interface LogDayFormProps {
+  weekLogId: string
   onClose: () => void
-  onCreate: (input: Omit<WeekLog, 'id' | 'created_at'>) => Promise<void>
+  onCreate: (input: Omit<DayLog, 'id' | 'created_at'>) => Promise<void>
 }
 
-export default function LogWeekForm({ seasonId, seasonNumber, nextWeekNumber, onClose, onCreate }: LogWeekFormProps) {
-  const { start, end } = getCurrentWeekBounds()
-  const [startDate, setStartDate] = useState(start)
-  const [endDate, setEndDate] = useState(end)
+export default function LogDayForm({ weekLogId, onClose, onCreate }: LogDayFormProps) {
+  const [date, setDate] = useState(toISODate(new Date()))
   const [emoji, setEmoji] = useState<string | null>(null)
   const [vibeScore, setVibeScore] = useState<number>(7)
   const [notes, setNotes] = useState('')
@@ -29,10 +25,8 @@ export default function LogWeekForm({ seasonId, seasonNumber, nextWeekNumber, on
     setError('')
     try {
       await onCreate({
-        season_id: seasonId,
-        week_number: nextWeekNumber,
-        start_date: startDate,
-        end_date: endDate,
+        week_log_id: weekLogId,
+        date,
         emoji,
         vibe_score: vibeScore,
         notes: notes.trim() || null,
@@ -60,29 +54,23 @@ export default function LogWeekForm({ seasonId, seasonNumber, nextWeekNumber, on
     display: 'block',
     fontSize: '12px',
     fontWeight: 500,
-    color: '#9ca3af',
+    color: '#6b7280',
     letterSpacing: '0.05em',
     marginBottom: '6px',
   }
 
   return (
-    <Modal title={`Log Week · S${seasonNumber}W${nextWeekNumber}`} onClose={onClose}>
+    <Modal title="Log Today" onClose={onClose}>
       <form onSubmit={handleSubmit}>
-        {/* Date range */}
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '18px' }}>
-          <div style={{ flex: 1 }}>
-            <label style={labelStyle}>WEEK START</label>
-            <input style={inputStyle} type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          </div>
-          <div style={{ flex: 1 }}>
-            <label style={labelStyle}>WEEK END</label>
-            <input style={inputStyle} type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} min={startDate} />
-          </div>
+        {/* Date */}
+        <div style={{ marginBottom: '18px' }}>
+          <label style={labelStyle}>DATE</label>
+          <input style={inputStyle} type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         </div>
 
         {/* Emoji picker */}
         <div style={{ marginBottom: '18px' }}>
-          <label style={labelStyle}>PICK AN EMOJI</label>
+          <label style={labelStyle}>HOW DID TODAY FEEL?</label>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
             {EMOJI_OPTIONS.map((e) => (
               <button
@@ -134,7 +122,7 @@ export default function LogWeekForm({ seasonId, seasonNumber, nextWeekNumber, on
           <label style={labelStyle}>NOTES (optional)</label>
           <textarea
             style={{ ...inputStyle, resize: 'vertical', minHeight: '80px' }}
-            placeholder="How did this week feel? Any highlights?"
+            placeholder="Anything notable today?"
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
           />
@@ -160,7 +148,7 @@ export default function LogWeekForm({ seasonId, seasonNumber, nextWeekNumber, on
             opacity: submitting ? 0.7 : 1,
           }}
         >
-          {submitting ? 'Saving...' : 'Save Week'}
+          {submitting ? 'Saving...' : 'Save Day'}
         </button>
       </form>
     </Modal>

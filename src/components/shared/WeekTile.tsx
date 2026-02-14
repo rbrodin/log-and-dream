@@ -15,7 +15,7 @@ export default function WeekTile({ weekLog, seasonNumber, size = 'full' }: WeekT
     // Square tile used in Timeline grid
     return (
       <div style={{
-        backgroundColor: '#1a1a1a',
+        backgroundColor: '#f3f4f6',
         borderRadius: '12px',
         padding: '10px',
         display: 'flex',
@@ -34,7 +34,7 @@ export default function WeekTile({ weekLog, seasonNumber, size = 'full' }: WeekT
   // Full row tile used in Home recent list
   return (
     <div style={{
-      backgroundColor: '#1a1a1a',
+      backgroundColor: '#f3f4f6',
       borderRadius: '14px',
       padding: '14px 16px',
       marginBottom: '10px',
@@ -52,7 +52,7 @@ export default function WeekTile({ weekLog, seasonNumber, size = 'full' }: WeekT
           {formatDateRange(weekLog.start_date, weekLog.end_date)}
         </div>
         {weekLog.notes && (
-          <div style={{ fontSize: '13px', color: '#d1d5db', marginTop: '6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+          <div style={{ fontSize: '13px', color: '#374151', marginTop: '6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {weekLog.notes}
           </div>
         )}

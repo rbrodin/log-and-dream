@@ -39,8 +39,8 @@ export default function BottomTabBar() {
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: '#1a1a1a',
-        borderTop: '1px solid #252525',
+        backgroundColor: '#ffffff',
+        borderTop: '1px solid #e5e7eb',
         display: 'flex',
         paddingBottom: 'env(safe-area-inset-bottom)',
       }}

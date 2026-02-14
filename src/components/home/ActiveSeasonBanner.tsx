@@ -16,7 +16,7 @@ export default function ActiveSeasonBanner({ season, totalWeeks = 0 }: ActiveSea
         style={{
           margin: '16px',
           padding: '20px',
-          backgroundColor: '#1a1a1a',
+          backgroundColor: '#f3f4f6',
           borderRadius: '16px',
           textAlign: 'center',
           cursor: 'pointer',
@@ -24,8 +24,8 @@ export default function ActiveSeasonBanner({ season, totalWeeks = 0 }: ActiveSea
         onClick={() => navigate('/seasons')}
       >
         <div style={{ fontSize: '32px', marginBottom: '8px' }}>🌱</div>
-        <div style={{ fontSize: '15px', fontWeight: 500, color: '#f5f5f5', marginBottom: '4px' }}>No active season</div>
-        <div style={{ fontSize: '13px', color: '#9ca3af' }}>Tap to create one in Seasons</div>
+        <div style={{ fontSize: '15px', fontWeight: 500, color: '#111827', marginBottom: '4px' }}>No active season</div>
+        <div style={{ fontSize: '13px', color: '#6b7280' }}>Tap to create one in Seasons</div>
       </div>
     )
   }

@@ -14,7 +14,7 @@ export default function SeasonCard({ season, stats, onSetActive }: SeasonCardPro
       style={{
         borderRadius: '16px',
         overflow: 'hidden',
-        backgroundColor: '#1a1a1a',
+        backgroundColor: '#f3f4f6',
         marginBottom: '16px',
       }}
     >
@@ -64,7 +64,7 @@ export default function SeasonCard({ season, stats, onSetActive }: SeasonCardPro
         <div style={{ display: 'flex', gap: '24px' }}>
           <div>
             <div style={{ fontSize: '10px', color: '#9ca3af', fontWeight: 500, letterSpacing: '0.05em', marginBottom: '2px' }}>WEEKS</div>
-            <div style={{ fontSize: '16px', fontWeight: 600, color: '#f5f5f5' }}>{stats.weekCount}</div>
+            <div style={{ fontSize: '16px', fontWeight: 600, color: '#111827' }}>{stats.weekCount}</div>
           </div>
           <div>
             <div style={{ fontSize: '10px', color: '#9ca3af', fontWeight: 500, letterSpacing: '0.05em', marginBottom: '2px' }}>AVG VIBE</div>
@@ -76,7 +76,7 @@ export default function SeasonCard({ season, stats, onSetActive }: SeasonCardPro
             onClick={() => onSetActive(season.id)}
             style={{
               backgroundColor: 'transparent',
-              border: '1px solid #252525',
+              border: '1px solid #e5e7eb',
               borderRadius: '8px',
               padding: '6px 12px',
               fontSize: '12px',

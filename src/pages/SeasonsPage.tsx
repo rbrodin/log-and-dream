@@ -21,8 +21,8 @@ export default function SeasonsPage() {
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
         <div>
-          <h1 style={{ margin: 0, fontSize: '28px', fontWeight: 700, color: '#f5f5f5' }}>Seasons</h1>
-          <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#9ca3af' }}>Chapters of your story</p>
+          <h1 style={{ margin: 0, fontSize: '28px', fontWeight: 700, color: '#111827' }}>Seasons</h1>
+          <p style={{ margin: '4px 0 0', fontSize: '14px', color: '#6b7280' }}>Chapters of your story</p>
         </div>
         <button
           onClick={() => setShowCreate(true)}
@@ -60,7 +60,7 @@ export default function SeasonsPage() {
         {!isLoading && seasons.length === 0 && (
           <div style={{ textAlign: 'center', padding: '60px 0', color: '#9ca3af' }}>
             <div style={{ fontSize: '40px', marginBottom: '12px' }}>🌱</div>
-            <div style={{ fontSize: '16px', fontWeight: 500, marginBottom: '6px', color: '#f5f5f5' }}>No seasons yet</div>
+            <div style={{ fontSize: '16px', fontWeight: 500, marginBottom: '6px', color: '#111827' }}>No seasons yet</div>
             <div style={{ fontSize: '14px' }}>Tap + to create your first season</div>
           </div>
         )}

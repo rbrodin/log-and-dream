@@ -52,12 +52,12 @@ export default function CreateSeasonModal({ nextNumber, hasActiveSeason, onClose
 
   const inputStyle: React.CSSProperties = {
     width: '100%',
-    backgroundColor: '#252525',
-    border: '1px solid #333',
+    backgroundColor: '#f3f4f6',
+    border: '1px solid #e5e7eb',
     borderRadius: '10px',
     padding: '12px 14px',
     fontSize: '15px',
-    color: '#f5f5f5',
+    color: '#111827',
     outline: 'none',
     boxSizing: 'border-box',
   }
@@ -133,7 +133,7 @@ export default function CreateSeasonModal({ nextNumber, hasActiveSeason, onClose
                   height: '48px',
                   borderRadius: '10px',
                   background: g.value,
-                  border: themeColor === g.value ? '3px solid #f5f5f5' : '3px solid transparent',
+                  border: themeColor === g.value ? '3px solid #111827' : '3px solid transparent',
                   cursor: 'pointer',
                   padding: 0,
                   flexShrink: 0,
@@ -158,7 +158,7 @@ export default function CreateSeasonModal({ nextNumber, hasActiveSeason, onClose
             onChange={(e) => setIsActive(e.target.checked)}
             style={{ width: '18px', height: '18px', accentColor: '#6366f1' }}
           />
-          <label htmlFor="set-active" style={{ fontSize: '14px', color: '#f5f5f5', cursor: 'pointer' }}>
+          <label htmlFor="set-active" style={{ fontSize: '14px', color: '#111827', cursor: 'pointer' }}>
             Set as active season
           </label>
         </div>
