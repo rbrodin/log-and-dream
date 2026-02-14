@@ -16,9 +16,6 @@ export default function HomePage() {
   const [showLogWeek, setShowLogWeek] = useState(false)
   const [showLogDay, setShowLogDay] = useState(false)
 
-  // Use most recent week log id for day logging, or null if none
-  const latestWeekLogId = weekLogs[0]?.id ?? null
-
   const recentWeeks = weekLogs.slice(0, 5)
 
   return (
@@ -119,7 +116,7 @@ export default function HomePage() {
 
       {showLogDay && activeSeason && (
         <LogDayForm
-          weekLogId={latestWeekLogId ?? 'standalone'}
+          seasonId={activeSeason.id}
           onClose={() => setShowLogDay(false)}
           onCreate={createDayLog}
         />

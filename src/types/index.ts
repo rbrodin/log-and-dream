@@ -23,7 +23,8 @@ export interface WeekLog {
 
 export interface DayLog {
   id: string
-  week_log_id: string
+  season_id: string
+  week_log_id: string | null  // null = logged before a week exists
   date: string
   emoji: string | null
   vibe_score: number | null

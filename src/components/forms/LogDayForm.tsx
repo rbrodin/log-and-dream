@@ -6,12 +6,12 @@ import type { DayLog } from '../../types'
 const EMOJI_OPTIONS = ['😊','🔥','💪','🌊','✨','😴','🤔','😤','🙏','🎯','🌱','☀️','🌧️','⚡','🎉','🧠','❤️','😔','🚀','🌙']
 
 interface LogDayFormProps {
-  weekLogId: string
+  seasonId: string
   onClose: () => void
   onCreate: (input: Omit<DayLog, 'id' | 'created_at'>) => Promise<void>
 }
 
-export default function LogDayForm({ weekLogId, onClose, onCreate }: LogDayFormProps) {
+export default function LogDayForm({ seasonId, onClose, onCreate }: LogDayFormProps) {
   const [date, setDate] = useState(toISODate(new Date()))
   const [emoji, setEmoji] = useState<string | null>(null)
   const [vibeScore, setVibeScore] = useState<number>(7)
@@ -25,7 +25,8 @@ export default function LogDayForm({ weekLogId, onClose, onCreate }: LogDayFormP
     setError('')
     try {
       await onCreate({
-        week_log_id: weekLogId,
+        season_id: seasonId,
+        week_log_id: null,
         date,
         emoji,
         vibe_score: vibeScore,
