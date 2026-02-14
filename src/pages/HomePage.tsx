@@ -7,16 +7,18 @@ import ActiveSeasonBanner from '../components/home/ActiveSeasonBanner'
 import WeekTile from '../components/shared/WeekTile'
 import LogWeekForm from '../components/forms/LogWeekForm'
 import LogDayForm from '../components/forms/LogDayForm'
+import { getVibeColor } from '../lib/utils'
 
 export default function HomePage() {
   const navigate = useNavigate()
   const { activeSeason } = useSeasons()
   const { weekLogs, createWeekLog } = useWeekLogs(activeSeason?.id ?? null)
-  const { createDayLog } = useDayLogs()
+  const { dayLogs, createDayLog } = useDayLogs(activeSeason?.id ?? null)
   const [showLogWeek, setShowLogWeek] = useState(false)
   const [showLogDay, setShowLogDay] = useState(false)
 
   const recentWeeks = weekLogs.slice(0, 5)
+  const recentDays = dayLogs.slice(0, 7)
 
   return (
     <div style={{ paddingTop: '16px' }}>
@@ -61,6 +63,42 @@ export default function HomePage() {
           <div style={{ fontSize: '12px', color: '#9ca3af', marginTop: '2px' }}>Quick capture</div>
         </button>
       </div>
+
+      {/* Recent days */}
+      {recentDays.length > 0 && (
+        <div style={{ padding: '24px 16px 0' }}>
+          <h3 style={{ margin: '0 0 12px', fontSize: '12px', fontWeight: 600, letterSpacing: '0.08em', color: '#9ca3af' }}>
+            RECENT DAYS
+          </h3>
+          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
+            {recentDays.map((dl) => {
+              const d = new Date(dl.date + 'T00:00:00')
+              const dayLabel = d.toLocaleDateString('en-US', { weekday: 'short' })
+              const dateLabel = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+              return (
+                <div
+                  key={dl.id}
+                  style={{
+                    flexShrink: 0,
+                    backgroundColor: '#f3f4f6',
+                    borderRadius: '12px',
+                    padding: '10px 12px',
+                    minWidth: '72px',
+                    textAlign: 'center',
+                  }}
+                >
+                  <div style={{ fontSize: '10px', color: '#9ca3af', fontWeight: 500 }}>{dayLabel}</div>
+                  <div style={{ fontSize: '22px', lineHeight: 1.2, margin: '4px 0' }}>{dl.emoji ?? '·'}</div>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: getVibeColor(dl.vibe_score) }}>
+                    {dl.vibe_score ?? '—'}
+                  </div>
+                  <div style={{ fontSize: '10px', color: '#9ca3af', marginTop: '2px' }}>{dateLabel}</div>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      )}
 
       {/* Recent weeks */}
       <div style={{ padding: '24px 16px 0' }}>
