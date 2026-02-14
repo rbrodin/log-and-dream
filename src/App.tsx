@@ -1,35 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import BottomTabBar from './components/layout/BottomTabBar'
+import HomePage from './pages/HomePage'
+import SeasonsPage from './pages/SeasonsPage'
+import TimelinePage from './pages/TimelinePage'
+import SettingsPage from './pages/SettingsPage'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{ minHeight: '100dvh', backgroundColor: '#0f0f0f', color: '#f5f5f5' }}>
+      <main style={{ paddingBottom: '72px' }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/seasons" element={<SeasonsPage />} />
+          <Route path="/timeline" element={<TimelinePage />} />
+          <Route path="/settings" element={<SettingsPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </main>
+      <BottomTabBar />
+    </div>
   )
 }
-
-export default App
