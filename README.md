@@ -1,2 +1,2 @@
 # log-and-dream
-Add to readme!
+Add to readme and fix...
